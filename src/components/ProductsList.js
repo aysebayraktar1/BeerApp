@@ -6,39 +6,61 @@ import {
   TouchableOpacity,
   StyleSheet,
   Dimensions,
+  Image,
+  ImageBackground,
 } from 'react-native';
 import {ProductsContext} from '../contexts/ProductsContextApi';
 
 export default ({navigation}) => {
   const context = useContext(ProductsContext);
   return (
-    <FlatList
-      data={context.beers}
-      keyExtractor={(item, index) => index.toString()}
-      renderItem={({item}) => (
-        <View>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate('Details', {beerId: item.id})}>
-            <Text>{item.name}</Text>
-          </TouchableOpacity>
-        </View>
-      )}
-    />
+    <View>
+      <Text
+        style={{
+          fontWeight: 'bold',
+          fontSize: 30,
+          textAlign: 'center',
+          color: 'purple',
+        }}>
+        BEERS
+      </Text>
+      <FlatList
+        data={context.beers}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({item}) => (
+          <View style={{marginTop: 15}}>
+            <TouchableOpacity
+              style={styles.image}
+              onPress={() => navigation.navigate('Details', {beerId: item.id})}>
+              <Image
+                style={{flex: 1, resizeMode: 'contain'}}
+                source={{uri: item.image_url}}></Image>
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                  fontSize: 20,
+                }}>
+                {item.name}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      />
+    </View>
   );
 };
 
 const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  button: {
+  image: {
     justifyContent: 'center',
-    borderWidth: 1,
-    borderLeftWidth: 0,
-    borderTopRightRadius: 7,
-    borderBottomRightRadius: 7,
-    borderColor: '#17AA98',
-    width: width * 0.8,
-    height: height * 0.07,
+    alignContent: 'center',
+    borderWidth: 2,
+    borderRadius: 15,
+    borderColor: '#808080',
+    width: width * 0.98,
+    height: height * 0.3,
   },
 });

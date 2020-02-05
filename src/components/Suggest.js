@@ -16,12 +16,21 @@ export default ({navigation}) => {
       data={context.randomBeers}
       keyExtractor={(item, index) => index.toString()}
       renderItem={({item}) => (
-        <View style={styles.button}>
+        <View>
+          <Text style={{fontSize: 20}}>{item.tagline}!</Text>
           <TouchableOpacity
             style={styles.button}
             onPress={() => navigation.navigate('Details', {beerId: item.id})}>
-            <Image style={{flex: 1}} source={{uri: item.image_url}}></Image>
-            <Text>{item.name}</Text>
+            <Image
+              style={{flex: 1, resizeMode: 'contain'}}
+              source={{uri: item.image_url}}></Image>
+            <Text
+              style={{
+                fontWeight: 'bold',
+                textAlign: 'center',
+              }}>
+              {item.name}
+            </Text>
           </TouchableOpacity>
         </View>
       )}
@@ -33,13 +42,10 @@ const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   button: {
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderLeftWidth: 0,
-    borderTopRightRadius: 7,
-    borderBottomRightRadius: 7,
-    borderColor: '#17AA98',
+    borderWidth: 2,
+    borderRadius: 15,
+    borderColor: 'black',
     width: width,
-    height: height * 0.25,
+    height: height * 0.3,
   },
 });

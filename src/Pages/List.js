@@ -9,8 +9,8 @@ const Tab = createBottomTabNavigator();
 export default () => (
   <ProductsProvider>
     <Tab.Navigator>
-      <Tab.Screen name="Ürünler" component={ProductsList} />
-      <Tab.Screen name="Ürün Önerileri" component={Suggest} />
+      <Tab.Screen name="Products" component={ProductsList} />
+      <Tab.Screen name="Best" component={Suggest} />
     </Tab.Navigator>
   </ProductsProvider>
 );

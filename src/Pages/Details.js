@@ -1,5 +1,13 @@
 import React from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Dimensions,
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+} from 'react-native';
 import axios from 'axios';
 export default class SpeakerScreen extends React.Component {
   constructor(props) {
@@ -23,9 +31,53 @@ export default class SpeakerScreen extends React.Component {
     const {beer} = this.state;
     if (!beer) return null;
     return (
-      <View>
-        <Text>{beer.name}</Text>
-      </View>
+      <SafeAreaView>
+        <ScrollView>
+          <View style={{backgroundColor: '#808080'}}>
+            <View style={{width: width, height: height * 0.4}}>
+              <Text style={styles.text2}>{beer.name}</Text>
+              <Text style={styles.text2}>{beer.tagline}</Text>
+
+              <Image
+                style={{flex: 1, resizeMode: 'contain'}}
+                source={{uri: beer.image_url}}></Image>
+            </View>
+            <View style={{margin: 10}}>
+              <Text style={styles.text}>
+                First Fermentation Date : {beer.first_brewed}
+              </Text>
+              <Text style={styles.text1}>Description: {beer.description}</Text>
+              <Text style={styles.text}>Brewers Tips: {beer.brewers_tips}</Text>
+              <Text style={styles.text1}>
+                Contributed By: {beer.contributed_by}
+              </Text>
+              <Text style={styles.text}>Food Pairing :</Text>
+              <Text style={styles.text}>1.{beer.food_pairing[0]}</Text>
+              <Text style={styles.text}> 2.{beer.food_pairing[1]}</Text>
+              <Text style={styles.text}>3.{beer.food_pairing[2]}</Text>
+            </View>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
     );
   }
 }
+const {width, height} = Dimensions.get('window');
+
+const styles = StyleSheet.create({
+  text: {
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  text1: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    backgroundColor: '#696969',
+  },
+  text2: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 30,
+    color: 'purple',
+  },
+});
