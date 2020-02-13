@@ -9,7 +9,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import axios from 'axios';
-export default class SpeakerScreen extends React.Component {
+export default class Details extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
