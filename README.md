@@ -2,5 +2,5 @@
 Beer Mobile App
 
 
-SETUP
+## SETUP
 $npm install
